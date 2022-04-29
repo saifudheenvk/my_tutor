@@ -45,6 +45,7 @@ function App() {
   useEffect(() => {
     const themeState = localStorage.getItem('app_theme');
     themeSelector(themeState || "dark")
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <div className="App">
