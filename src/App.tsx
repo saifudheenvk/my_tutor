@@ -13,6 +13,8 @@ declare const window: any;
 
 function App() {
 
+  const dispatch = useAppDispatch();
+
   const themeSelector = (themeState: string) => {
     if (themeState !== 'white') {
       dispatch(changeTheme('dark'));
@@ -41,7 +43,6 @@ function App() {
     }
   };
 
-  const dispatch = useAppDispatch();
   useEffect(() => {
     const themeState = localStorage.getItem('app_theme');
     themeSelector(themeState || "dark")

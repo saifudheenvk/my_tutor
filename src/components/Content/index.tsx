@@ -1,9 +1,14 @@
+import { Layout } from "antd";
 import { FC, Suspense } from "react";
 import { BrowserRouter as Router } from 'react-router-dom';
 import styled from "styled-components";
+import { useAppSelector } from "../../redux/store";
+import Header from "../Header";
 import RouteMap from "./RouteMap";
 
-const Container = styled.div`
+const { Content: AntdContent } = Layout;
+
+const ContainerLayout = styled.div`
 && {
     height: 100vh;
   }
@@ -21,20 +26,35 @@ const Container = styled.div`
   }
   `;
 
+
+const Container = styled(AntdContent)`
+padding: 15px 18px;
+min-height: 280px;
+overflow-y: auto;
+height: calc(100% - 55px);
+@media (max-width: 768px) {
+  padding: 0px;
+}
+`;
+
 interface IProps {
 
 }
 
 const Content: FC<IProps> = (props) => {
 
+    const themeRedux = useAppSelector(state => state.themeReducer)
     return (
-        <Container>
+        <ContainerLayout theme={themeRedux} >
             <Router>
+                <Header />
+                <Container>
                 <Suspense fallback="loading" >
                     <RouteMap user={{ id: "abc" }} />
                 </Suspense>
+                </Container>
             </Router>
-        </Container>
+        </ContainerLayout>
     )
 }
 

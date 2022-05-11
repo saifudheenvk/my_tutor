@@ -53,13 +53,7 @@ background: #b9bec154 !important;
     .ant-menu-submenu-title .anticon {
      margin-left: 10px;
     }
-	// .ant-menu-horizontal > .ant-menu-item-selected,.ant-menu-horizontal > .ant-menu-item:hover,.ant-menu-horizontal >.ant-menu-item-active {
-	// 	border-bottom: none !important;
-	// 	color:#fff !important;
-	// }
-	// .ant-menu-horizontal > .ant-menu-item, .ant-menu-horizontal > .ant-menu-submenu {
-	// 	border-bottom: none !important;
-	// }
+
 	.ant-menu-horizontal{
 		border-bottom: none !important;
 	}
