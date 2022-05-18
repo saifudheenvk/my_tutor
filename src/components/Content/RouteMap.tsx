@@ -6,6 +6,22 @@ import { IRouteItem } from "./types";
 
 const routeArray: IRouteItem[] = [
     {
+        path: "/notifications",
+        element: <div>Notifications</div>,
+        isPublic: true
+    }, {
+        path: "/messages",
+        element: <div>Messages</div>,
+        isPublic: true
+    }, {
+        path: "/trending",
+        element: <div>Trending</div>,
+        isPublic: true
+    }, {
+        path: "/people",
+        element: <div>Profiles</div>,
+        isPublic: true
+    }, {
         path: "/profile/:id",
         element: <div>Profile</div>,
         isPublic: true

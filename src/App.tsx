@@ -4,7 +4,7 @@ import './App.css';
 import Content from './components/Content';
 import { changeTheme } from './redux/actions/theme';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useAppDispatch } from './redux/store';
+import { useAppDispatch, useAppSelector } from './redux/store';
 import GlobalStyles from './utils/GlobalStyles';
 import theme from './utils/theme';
 import theme_two from './theme_two';
@@ -15,6 +15,7 @@ declare const window: any;
 function App() {
 
   const dispatch = useAppDispatch();
+  const themeRedux = useAppSelector(state=>state.themeReducer)
 
   const themeSelector = (themeState: string) => {
     if (themeState !== 'white') {
@@ -45,8 +46,8 @@ function App() {
   };
 
   useEffect(() => {
-    const themeState = localStorage.getItem('app_theme');
-    themeSelector(themeState || "dark")
+    const themeState = localStorage.getItem('app_theme')|| "dark";
+    themeSelector(themeState)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
@@ -60,7 +61,7 @@ function App() {
             <Route path='*' element={<Content />} />
           </Routes>
         </Router>
-        <GlobalStyles />
+        <GlobalStyles themeState={themeRedux} />
       </ThemeProvider>
     </div>
   );

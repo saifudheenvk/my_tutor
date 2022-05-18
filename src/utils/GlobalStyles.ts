@@ -1,5 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
+interface IGlobalStyles{
+	themeState:string;
+	theme:any
+}
+
 const GlobalStyles = createGlobalStyle`
     h2 {
 		font-weight: 600;
@@ -7,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
 	}
 	body {
 		margin: 0;
-        font-family: ${props => props.theme.fonts.main};
+        font-family: ${(props:IGlobalStyles) => props.theme.fonts.main};
 	}
 	.ant-layout{
 		// background: #f2f8f9 !important;
@@ -17,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
 	// 	color:#002140 !important;
 	// }
 	.ant-layout {
-    background:${props =>
+    background:${(props:IGlobalStyles) =>
       props.themeState === 'dark' ? 'rgb(50, 52, 60)' : '#F3F3F4'} !important;
 ;
 }

@@ -27,13 +27,13 @@ const ContainerLayout = styled.div`
 
 
 const Container = styled(AntdContent)`
-padding: 15px 18px;
-min-height: 280px;
-overflow-y: auto;
-height: calc(100% - 55px);
-@media (max-width: 768px) {
-  padding: 0px;
-}
+  padding: 15px 18px;
+  min-height: 280px;
+  overflow-y: auto;
+  height: calc(100% - 55px);
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
 `;
 
 interface IProps {
