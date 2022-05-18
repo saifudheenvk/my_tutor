@@ -3,5 +3,5 @@ export type ThemeProps = {
 }
 export type MenuTextProps={
     themestate:string
-    isActive:boolean
+    isactive:boolean
 }

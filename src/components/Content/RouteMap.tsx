@@ -1,28 +1,21 @@
 import { FC } from "react";
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
+import Services from "../Services";
 import { IRouteItem } from "./types";
 
 
 const routeArray: IRouteItem[] = [
     {
-        path: "/sign-in",
-        element: <div>Login</div>,
-        isPublic: true
-    }, {
-        path: "/sign-up",
-        element: <div>Sign Up</div>,
-        isPublic: true
-    }, {
         path: "/profile/:id",
         element: <div>Profile</div>,
         isPublic: true
     }, {
-        path: "/forgot-password",
-        element: <div>Forgot Password</div>,
-        isPublic: true
+        path: "/services",
+        element: <Services />,
+        isPublic: false
     }, {
         path: "/",
-        element: <div>Account</div>,
+        element: <Navigate to="/services" />,
         isPublic: false
     }
 ]

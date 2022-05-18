@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import './App.css';
 import Content from './components/Content';
 import { changeTheme } from './redux/actions/theme';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useAppDispatch } from './redux/store';
 import GlobalStyles from './utils/GlobalStyles';
 import theme from './utils/theme';
@@ -51,7 +52,14 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Content />
+        <Router>
+          <Routes>
+            <Route path='/sign-in' element={<div>Sign In</div>} />
+            <Route path='/sign-up' element={<div>Sign Up</div>} />
+            <Route path='/forgot-password' element={<div>Forgot Password</div>} />
+            <Route path='*' element={<Content />} />
+          </Routes>
+        </Router>
         <GlobalStyles />
       </ThemeProvider>
     </div>

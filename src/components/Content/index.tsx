@@ -1,6 +1,5 @@
 import { Layout } from "antd";
 import { FC, Suspense } from "react";
-import { BrowserRouter as Router } from 'react-router-dom';
 import styled from "styled-components";
 import { useAppSelector } from "../../redux/store";
 import Header from "../Header";
@@ -46,14 +45,12 @@ const Content: FC<IProps> = (props) => {
   const themeRedux = useAppSelector(state => state.themeReducer)
   return (
     <ContainerLayout theme={themeRedux} >
-      <Router>
         <Header />
         <Container>
           <Suspense fallback="loading" >
             <RouteMap user={{ id: "abc" }} />
           </Suspense>
         </Container>
-      </Router>
     </ContainerLayout>
   )
 }
