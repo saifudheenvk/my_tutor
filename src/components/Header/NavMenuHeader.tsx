@@ -1,24 +1,21 @@
 import { useAppSelector } from "../../redux/store";
 import styled from "styled-components";
-import { HomeIconProps, MenuTextProps, ThemeProps } from "../../utils/types/theme";
+import { MenuTextProps } from "../../utils/types/theme";
 import { Col, Menu, Row } from "antd";
 import { useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HomeOutlined } from '@ant-design/icons';
+import { FireFilled, FireOutlined, MessageOutlined, MessageFilled, BellOutlined, BellFilled, ProfileOutlined, ProfileFilled } from '@ant-design/icons';
 
 
 
 const MenuHeader = styled.div`
-  width: 100% !important;
   height: 60px;
-  background: ${(props: ThemeProps) =>
-        props.themestate === 'dark' ? '#2a2d34' : '#49548D'} !important;
   display: flex;
   align-items: center;
 `;
 
 const MenuContainer = styled(Menu)`
-  width: 50% !important;
+  width: 100% !important;
   background: none !important;
   align-items: center;
   display: flex;
@@ -40,11 +37,9 @@ const MenuText = styled.span`
         return props.isActive ? 600 : 'normal';
     }};
   font-size: 12px;
-  color: ${props => {
-        if (props.themestate === 'dark')
-            return props.isActive ? '#ffffff' : '#848C94';
-        return '#ffffff';
-    }};
+  margin-left: 4px;
+  color: #848C94;
+  margin-bottom: 1px;
 `;
 
 const TopMenuItem = styled(Menu.Item)`
@@ -66,14 +61,30 @@ const TopMenuItem = styled(Menu.Item)`
   }
 `;
 
-const HomeIcon = styled(HomeOutlined)`
-  color: ${(props: HomeIconProps) => {
-        if (props.themestate === 'dark')
-            return props.activePath === 'home' ? '#fff' : '#848C94';
-        return '#fff';
-    }} !important;
+const TrendingIcon1 = styled(FireOutlined)`
+    color: #848C94!important;
 `;
-
+const TrendingIcon2 = styled(FireFilled)`
+    color: #848C94!important;
+`;
+const MessageIcon1 = styled(MessageOutlined)`
+    color: #848C94!important;
+`;
+const MessageIcon2 = styled(MessageFilled)`
+    color: #848C94!important;
+`;
+const NotificationIcon1 = styled(BellOutlined)`
+    color: #848C94!important;
+`;
+const NotificationIcon2 = styled(BellFilled)`
+    color: #848C94!important;
+`;
+const ProfileIcon1 = styled(ProfileOutlined)`
+    color: #848C94!important;
+`;
+const ProfileIcon2 = styled(ProfileFilled)`
+    color: #848C94!important;
+`;
 const NavMenuHeader = () => {
     const navigate = useNavigate();
     const location = useLocation()
@@ -87,33 +98,40 @@ const NavMenuHeader = () => {
     );
     const menuConfig = [
         {
-            name: 'Home',
-            key: 'home',
-            icon: <HomeIcon activePath={pathname[0]} themestate={themeState} />,
+            name: 'Trending',
+            key: 'trending',
+            icon1: <TrendingIcon1 />,
+            icon2: <TrendingIcon2 />,
         },
         {
             name: 'Dashboards',
             key: 'dashboards',
-            icon: <HomeIcon activePath={pathname[0]} themestate={themeState} />,
+            icon1: <TrendingIcon1 />,
+            icon2: <TrendingIcon2 />,
         },
         {
-            name: 'Buildings',
-            key: 'buildings',
-            icon: <HomeIcon activePath={pathname[0]} themestate={themeState} />,
+            name: 'People',
+            key: 'people',
+            icon1: <ProfileIcon1 />,
+            icon2: <ProfileIcon2 />,
         },
         {
-            name: 'Equipments',
-            key: 'equipments',
-            icon: <HomeIcon activePath={pathname[0]} themestate={themeState} />,
+            name: 'Messages',
+            key: 'messages',
+            icon1: <MessageIcon1 />,
+            icon2: <MessageIcon2 />,
+
         },
         {
-            name: 'Alerts',
-            key: 'alerts',
-            icon: <HomeIcon activePath={pathname[0]} themestate={themeState} />,
-        },
+            name: 'Notifications',
+            key: 'notifications',
+            icon1:<NotificationIcon1 rotate={10} />,
+            icon2: <NotificationIcon2 rotate={10} />,
+
+        }
     ];
     return (
-        <MenuHeader themestate={themeState}>
+        <MenuHeader>
             <MenuContainer
                 mode="horizontal"
                 onClick={changeRoute}
@@ -125,7 +143,7 @@ const NavMenuHeader = () => {
                         isActive={pathname[0] === menuItem.key}
                     >
                         <Row>
-                            <Col>{menuItem.icon}</Col>
+                            <Col>{pathname[0] === menuItem.key?menuItem.icon2:menuItem.icon1}</Col>
                             <Col>
                                 <MenuText
                                     isActive={pathname[0] === menuItem.key}

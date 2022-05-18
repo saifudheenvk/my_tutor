@@ -15,13 +15,13 @@ const ContainerLayout = styled.div`
 
   & ::-webkit-scrollbar {
     background-color: ${props =>
-        props.theme === 'dark' ? '#2f323b' : '#ffffff'};
+    props.theme === 'dark' ? '#2f323b' : '#ffffff'};
     width: 6px;
     // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
   & ::-webkit-scrollbar-thumb {
     background-color: ${props =>
-        props.theme === 'dark' ? '#3b3e48' : '#ffffff'};
+    props.theme === 'dark' ? '#3b3e48' : '#ffffff'};
     -webkit-border-radius: 1ex;
   }
   `;
@@ -43,19 +43,19 @@ interface IProps {
 
 const Content: FC<IProps> = (props) => {
 
-    const themeRedux = useAppSelector(state => state.themeReducer)
-    return (
-        <ContainerLayout theme={themeRedux} >
-            <Router>
-                <Header />
-                <Container>
-                <Suspense fallback="loading" >
-                    <RouteMap user={{ id: "abc" }} />
-                </Suspense>
-                </Container>
-            </Router>
-        </ContainerLayout>
-    )
+  const themeRedux = useAppSelector(state => state.themeReducer)
+  return (
+    <ContainerLayout theme={themeRedux} >
+      <Router>
+        <Header />
+        <Container>
+          <Suspense fallback="loading" >
+            <RouteMap user={{ id: "abc" }} />
+          </Suspense>
+        </Container>
+      </Router>
+    </ContainerLayout>
+  )
 }
 
 export default Content

@@ -33,13 +33,14 @@ const HeaderContainer = styled(Row)`
 const LogoContainer = styled.div`
   width: 100%;
   background: ${(props: ThemeProps) =>
-        props.themestate === 'dark' ? '#ffc107' : ''} !important;
+    props.themestate === 'dark' ? '#ffc107' : '#49548D'} !important;
   height: 55px;
   align-items: center;
   display: flex;
   justify-content: center;
   max-width: 200px;
   cursor: pointer;
+  color: #fff;
 `;
 
 const NavOptions = styled(Col)`
@@ -52,19 +53,11 @@ const NavOptions = styled(Col)`
 `;
 
 const LanguageSelectContainer = styled.div`
-  margin-right: 10px;
+  margin-right: 20px;
   margin-left: 10px;
 `;
-
-const Username = styled.p`
-  display: inline-block;
-  display: inline-block;
-  margin: 4px;
-  font-size: 12px;
-  color: #848c94;
-  @media (max-width: 1000px) {
-    display: none;
-  }
+const UserIcon = styled(Col)`
+  cursor: pointer;
 `;
 
 interface IProps {
@@ -73,40 +66,41 @@ interface IProps {
 
 const Header: FC<IProps> = props => {
 
-    const themeState = useAppSelector(state => state.themeReducer);
-    const navigate = useNavigate();
-    return (
-        <Container>
-            <HeaderContainer justify="start">
-                <Col xl={4} md={4} sm={4} xs={4}>
-                    <LogoContainer
-                        themestate={themeState}
-                        onClick={() => {
-                            navigate('/');
-                        }}
-                    >
-                        My Tutor
-                    </LogoContainer>
-                </Col>
-                <NavOptions xl={4} md={6} sm={10} xs={12}>
-                    <Row justify="end">
-                        <Col>
-                            <LanguageSelectContainer>
-                                <LanguageSelector />
-                            </LanguageSelectContainer>
-                        </Col>
-                        <Col>
-                            <UserOptions>
-                                <Username>Saifu</Username>
-                                <Avatar icon={<UserOutlined />} />
-                            </UserOptions>
-                        </Col>
-                    </Row>
-                </NavOptions>
-            </HeaderContainer>
-            <NavMenuHeader />
-        </Container>
-    )
+  const themeState = useAppSelector(state => state.themeReducer);
+  const navigate = useNavigate();
+  return (
+    <Container>
+      <HeaderContainer justify="start">
+        <Col xl={4} md={4} sm={4} xs={4}>
+          <LogoContainer
+            themestate={themeState}
+            onClick={() => {
+              navigate('/');
+            }}
+          >
+            My Tutor
+          </LogoContainer>
+        </Col>
+        <Col xl={16} md={15} sm={13} xs={10}>
+          <NavMenuHeader />
+        </Col>
+        <NavOptions xl={4} md={5} sm={6} xs={10}>
+          <Row justify="end">
+            <Col>
+              <LanguageSelectContainer>
+                <LanguageSelector />
+              </LanguageSelectContainer>
+            </Col>
+            <UserIcon>
+              <UserOptions>
+                <Avatar icon={<UserOutlined />} />
+              </UserOptions>
+            </UserIcon>
+          </Row>
+        </NavOptions>
+      </HeaderContainer>
+    </Container>
+  )
 }
 
 export default Header;
