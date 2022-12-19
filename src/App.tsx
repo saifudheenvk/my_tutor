@@ -9,6 +9,8 @@ import GlobalStyles from './utils/GlobalStyles';
 import theme from './utils/theme';
 import theme_two from './theme_two';
 import theme_one from './theme_one';
+import LoginForm from './components/Login/LoginForm';
+import ForgotPassword from './components/Login/ForgotPassword';
 
 declare const window: any;
 
@@ -55,9 +57,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Routes>
-            <Route path='/sign-in' element={<div>Sign In</div>} />
+            <Route path='/sign-in' element={<LoginForm />} />
             <Route path='/sign-up' element={<div>Sign Up</div>} />
-            <Route path='/forgot-password' element={<div>Forgot Password</div>} />
+            <Route path='/forgot-password' element={<ForgotPassword/>} />
             <Route path='*' element={<Content />} />
           </Routes>
         </Router>

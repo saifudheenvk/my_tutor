@@ -200,6 +200,10 @@ background: #b9bec154 !important;
     props.themeState === 'dark' ? '#FFC107' : '#49548D'} !important;
   }
 
+  .ant-input::placeholder {
+	color: #bfbfbf !important;
+	}
+
 `;
 
 export default GlobalStyles;
