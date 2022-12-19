@@ -5,7 +5,7 @@ export const LoginInput = styled(Input)`
     background-color: #fff !important ;
     padding: 10px;
     border-radius: 10px !important;
-    width: 300px;
+    width: 340px;
     & .ant-input{
         background-color: #fff !important ;
     }

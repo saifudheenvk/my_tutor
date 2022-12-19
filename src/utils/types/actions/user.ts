@@ -9,3 +9,11 @@ export interface ForgotPasswordRequest {
     npassword: string;
     otp: string;
 }
+
+export interface SignUpRequest {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    mobileNumber: string;
+}

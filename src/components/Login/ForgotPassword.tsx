@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { Link } from "react-router-dom";
 import { authenticateUser } from "../../actions/users/auth";
 import { ForgotPasswordRequest } from "../../utils/types/actions/user";
 import { LoginContainer, LoginTitle } from "../styled_components/Login";
@@ -34,7 +35,9 @@ const ForgotPassword: FC<IProps> = (props) => {
             <InputBox placeholder="email" callFunc={true} handleChange={handleChange} formData={formData} type="email" /><br /><br />
             {formData?.email && <><InputBox placeholder="otp" handleChange={handleChange} formData={formData} type="otp" /><br /><br /></>}
             {formData?.otp && <><InputBox placeholder="new password" handleChange={handleChange} formData={formData} type="npassword" /><br /><br /></>}
-            {formData?.npassword && <InputBox callFunc={true} placeholder="confirm password" submitFunction={loginToYourAccount} handleChange={handleChange} formData={formData} type="password" />}
+            {formData?.npassword && <><InputBox callFunc={true} placeholder="confirm password" submitFunction={loginToYourAccount} handleChange={handleChange} formData={formData} type="password" /><br /><br /></>}
+            <p>Sign in with existing password <Link to="/sign-in" >here</Link> </p>
+            <p>Do you have an account? create one <Link to="/sign-up" >here</Link> </p>
         </LoginContainer>
     )
 

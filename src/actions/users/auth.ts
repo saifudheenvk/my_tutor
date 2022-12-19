@@ -4,7 +4,7 @@ import axiosInstance from "../axios";
 
 
 export async function authenticateUser(data: LoginRequest) {
-    return axiosInstance.post(`${baseURL}/api/auth/login`).then(res => {
+    return axiosInstance.post(`${baseURL}/api/users/login`,data).then(res => {
         return res.data;
     })
 }
