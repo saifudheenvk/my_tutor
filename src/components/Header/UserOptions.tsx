@@ -1,6 +1,6 @@
 import { Dropdown, Menu, Switch } from "antd";
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { changeTheme } from "../../redux/actions/theme";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
@@ -33,6 +33,7 @@ const UserOptions: FC<IProps> = (props) => {
 
     const themeState = useAppSelector(state => state.themeReducer);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const onChangeTheme = (e: boolean) => {
         if (e) {
@@ -64,6 +65,21 @@ const UserOptions: FC<IProps> = (props) => {
         }
     };
 
+    const logout = () => {
+        localStorage.setItem("auth_token","")
+        navigate("/sign-in")
+        window.less
+                .modifyVars({
+                    ...theme_one,
+                })
+                .then(() => {
+                    console.log('success');
+                })
+                .catch(() => {
+                    console.log('fail');
+                });
+    }
+
     const menu = (
         <UserOptionsMenu themestate={themeState}>
             <UserDropDown key="profile">
@@ -76,7 +92,7 @@ const UserOptions: FC<IProps> = (props) => {
                     onChange={onChangeTheme}
                 />
             </UserDropDown>
-            <UserDropDown key="logout">
+            <UserDropDown onClick={logout} key="logout">
                 Logout
             </UserDropDown>
         </UserOptionsMenu>

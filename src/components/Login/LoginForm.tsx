@@ -1,5 +1,6 @@
-import { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { message } from "antd";
+import { FC, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { authenticateUser } from "../../actions/users/auth";
 import { LoginRequest } from "../../utils/types/actions/user";
 import { LoginContainer, LoginTitle } from "../styled_components/Login";
@@ -13,6 +14,7 @@ interface IProps {
 
 const LoginForm: FC<IProps> = (props) => {
 
+    const navigate = useNavigate();
     const [formData, setFormData] = useState<LoginRequest>();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, valueType: string) => {
@@ -23,11 +25,26 @@ const LoginForm: FC<IProps> = (props) => {
 
     const loginToYourAccount = () => {
         if (formData) {
-            authenticateUser(formData).then(res=>{
+            authenticateUser(formData).then(res => {
+                if (res.status) {
+                    navigate("/")
+                    localStorage.setItem("auth_token", res.data.token)
+                } else {
+                    message.error(res.data)
+                }
                 console.log(res.data)
+            }).catch(err => {
+                message.error(err.message)
             })
         }
     }
+
+    useEffect(()=>{
+        const token = localStorage.getItem("auth_token");
+        if(token){
+            navigate('/')
+        }
+    })
 
     return (
         <LoginContainer>

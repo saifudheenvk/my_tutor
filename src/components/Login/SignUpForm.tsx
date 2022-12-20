@@ -18,16 +18,17 @@ const SignUpForm:FC<IProps> = props =>{
         })
     }
 
-    const loginToYourAccount = () => {
+    const createNewAccount = () => {
         if (formData) {
             registerUser(formData).then(res => {
-                if(res.status===200&&res.data.status){
-                    console.log(res.data)
+                if(res.status){
                     message.success("Created user successfully")
                     navigate("/sign-in")
                 } else{
                     message.error(res.data)
                 }
+            }).catch(err=>{
+                message.error(err.message)
             })
         }
     }
@@ -39,7 +40,7 @@ const SignUpForm:FC<IProps> = props =>{
             {formData?.firstName&&<><InputBox placeholder="last name" handleChange={handleChange} formData={formData} type="lastName" /><br /><br /></>}
             {formData?.lastName&&<><InputBox placeholder="phone number" handleChange={handleChange} formData={formData} type="mobileNumber" /><br /><br /></>}
             {formData?.mobileNumber&&<><InputBox placeholder="email" handleChange={handleChange} formData={formData} type="email" /><br /><br /></>}
-            {formData?.email && <><InputBox callFunc={true} placeholder="password" submitFunction={loginToYourAccount} handleChange={handleChange} formData={formData} type="password" /><br /><br /></>}
+            {formData?.email && <><InputBox callFunc={true} placeholder="password" submitFunction={createNewAccount} handleChange={handleChange} formData={formData} type="password" /><br /><br /></>}
             <p>Already a member? login to your account <Link to="/sign-in" >here</Link> </p>
         </LoginContainer>
     )
