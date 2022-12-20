@@ -5,6 +5,7 @@ import Icon from '@ant-design/icons';
 
 import ListServices from "./ListServices";
 import { useAppSelector } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
 
 
 const Container = styled(Row)`
@@ -49,7 +50,16 @@ interface IProps {
 
 const Services: FC<IProps> = () => {
     const themeState = useAppSelector(state => state.themeReducer)
+    const userDetails = useAppSelector(state => state.loginReducer)
+    const navigate = useNavigate();
 
+    const clickCard = (service: string) => {
+        if (userDetails.status <= 1) {
+            navigate('/profile')
+        } else {
+            navigate(`${service.toLocaleLowerCase()}`)
+        }
+    }
     return (
         <>
             <ServicesText>Services</ServicesText>
@@ -61,7 +71,7 @@ const Services: FC<IProps> = () => {
                             ListServices(themeState === "dark" ? "#ffc107" : "#49548D").map(service => {
                                 return (
                                     <Col style={{ margin: "20px 10px" }} key={service.title} lg={6} xl={6} md={7} xs={24} sm={10} xxl={4}>
-                                        <StyledCard  >
+                                        <StyledCard onClick={() => clickCard(service.title)} >
                                             <Icon component={service.icon} />
                                         </StyledCard>
                                         <ServiceName>{service.title}</ServiceName>

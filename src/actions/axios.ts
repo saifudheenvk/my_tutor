@@ -9,7 +9,7 @@ axiosInstance.defaults.timeout = 2500;
 const requestHandler = (request: AxiosRequestConfig) => {
     const { headers } = request;
     if (headers) {
-        let token = localStorage.getItem('userToken')
+        let token = localStorage.getItem('auth_token')
         headers.Authorization = `Bearer ${token}`
         request.headers = headers
     }

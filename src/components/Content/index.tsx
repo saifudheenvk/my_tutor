@@ -1,7 +1,9 @@
-import { Layout } from "antd";
+import { Layout, message } from "antd";
 import { FC, Suspense, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { getMyDetails } from "../../actions/users/userDetails";
+import { setUserDetails } from "../../redux/actions/auth";
 import { changeTheme } from "../../redux/actions/theme";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import theme_one from "../../theme_one";
@@ -49,7 +51,8 @@ interface IProps {
 const Content: FC<IProps> = (props) => {
 
   const dispatch = useAppDispatch();
-  const themeRedux = useAppSelector(state=>state.themeReducer)
+  const navigate = useNavigate();
+  const themeRedux = useAppSelector(state => state.themeReducer)
 
   const themeSelector = (themeState: string) => {
     if (themeState !== 'white') {
@@ -79,25 +82,41 @@ const Content: FC<IProps> = (props) => {
     }
   };
 
-  const navigate = useNavigate();
+  const getUserDetails = () => {
+    getMyDetails().then(res => {
+      if (res.status) {
+        navigate("/")
+        localStorage.setItem("auth_token", res.data.token)
+        dispatch(setUserDetails(res.data))
+      } else {
+        message.error(res.data)
+      }
+    }).catch(err => {
+      message.error(err.message)
+    })
+  }
+
+
   useEffect(() => {
-    const themeState = localStorage.getItem('app_theme')|| "dark";
+    const themeState = localStorage.getItem('app_theme') || "dark";
     themeSelector(themeState)
 
     const token = localStorage.getItem("auth_token");
-    if(!token){
+    if (!token) {
       navigate('/sign-in')
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    getUserDetails()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <ContainerLayout theme={themeRedux} >
-        <Header />
-        <Container>
-          <Suspense fallback="loading" >
-            <RouteMap user={{ id: "abc" }} />
-          </Suspense>
-        </Container>
+      <Header />
+      <Container>
+        <Suspense fallback="loading" >
+          <RouteMap user={{ id: "abc" }} />
+        </Suspense>
+      </Container>
     </ContainerLayout>
   )
 }
