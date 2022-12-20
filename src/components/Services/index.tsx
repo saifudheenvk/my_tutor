@@ -55,7 +55,7 @@ const Services: FC<IProps> = () => {
 
     const clickCard = (service: string) => {
         if (userDetails.status <= 1) {
-            navigate('/profile')
+            navigate(`/profile/${userDetails.id}`)
         } else {
             navigate(`${service.toLocaleLowerCase()}`)
         }

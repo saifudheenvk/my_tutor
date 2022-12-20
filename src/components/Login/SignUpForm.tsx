@@ -1,5 +1,5 @@
 import { message } from "antd";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../actions/users/userDetails";
 import { SignUpRequest } from "../../utils/types/actions/user";
@@ -32,6 +32,13 @@ const SignUpForm:FC<IProps> = props =>{
             })
         }
     }
+
+    useEffect(()=>{
+        const token = localStorage.getItem("auth_token");
+        if(token){
+            navigate('/')
+        }
+    })
 
     return(
         <LoginContainer>

@@ -85,8 +85,6 @@ const Content: FC<IProps> = (props) => {
   const getUserDetails = () => {
     getMyDetails().then(res => {
       if (res.status) {
-        navigate("/")
-        localStorage.setItem("auth_token", res.data.token)
         dispatch(setUserDetails(res.data))
       } else {
         message.error(res.data)
@@ -114,7 +112,7 @@ const Content: FC<IProps> = (props) => {
       <Header />
       <Container>
         <Suspense fallback="loading" >
-          <RouteMap user={{ id: "abc" }} />
+          <RouteMap />
         </Suspense>
       </Container>
     </ContainerLayout>

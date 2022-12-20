@@ -36,7 +36,6 @@ const LoginForm: FC<IProps> = (props) => {
                 } else {
                     message.error(res.data)
                 }
-                console.log(res.data)
             }).catch(err => {
                 message.error(err.message)
             })
