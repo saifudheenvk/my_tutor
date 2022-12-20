@@ -1,5 +1,6 @@
+import { message } from "antd";
 import { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../actions/users/userDetails";
 import { SignUpRequest } from "../../utils/types/actions/user";
 import { LoginContainer, LoginTitle } from "../styled_components/Login";
@@ -9,6 +10,7 @@ interface IProps {
 }
 const SignUpForm:FC<IProps> = props =>{
 
+    const navigate = useNavigate();
     const [formData, setFormData] = useState<SignUpRequest>();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>, valueType: string) => {
         setFormData((prev: any) => {
@@ -19,7 +21,13 @@ const SignUpForm:FC<IProps> = props =>{
     const loginToYourAccount = () => {
         if (formData) {
             registerUser(formData).then(res => {
-                console.log(res.data)
+                if(res.status===200&&res.data.status){
+                    console.log(res.data)
+                    message.success("Created user successfully")
+                    navigate("/sign-in")
+                } else{
+                    message.error(res.data)
+                }
             })
         }
     }

@@ -17,3 +17,14 @@ export interface SignUpRequest {
     password: string;
     mobileNumber: string;
 }
+
+export interface IUser {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: any;
+    mobileNumber: string;
+    archived?: boolean;
+  }
+  
