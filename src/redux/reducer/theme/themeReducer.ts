@@ -5,7 +5,7 @@ export type ThemeChangeAction = {
     type: string
 }
 
-const themeReducer = (state = 'dark', action: ThemeChangeAction) => {
+const themeReducer = (state = 'white', action: ThemeChangeAction) => {
     switch (action.type) {
         case CHANGE_THEME:
             return action.theme;

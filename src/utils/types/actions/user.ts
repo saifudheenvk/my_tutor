@@ -31,3 +31,13 @@ export interface LoginUserResponseBody {
     status: any
   }
   
+
+  export interface ProfileItem {
+    id: string
+    name: string;
+    email: string;
+    mobileNumber: string;
+    companyId: string;
+    about: string;
+    info: string;
+  }

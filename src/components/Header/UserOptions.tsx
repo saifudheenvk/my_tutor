@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { changeTheme } from "../../redux/actions/theme";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import theme_one from "../../theme_one";
-import theme_two from "../../theme_two";
 import { ThemeProps } from "../../utils/types/theme";
 
 
@@ -27,11 +25,10 @@ interface IProps {
 
 }
 
-declare const window: any;
-
 const UserOptions: FC<IProps> = (props) => {
 
     const themeState = useAppSelector(state => state.themeReducer);
+    const user = useAppSelector(state => state.loginReducer)
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -39,51 +36,22 @@ const UserOptions: FC<IProps> = (props) => {
         if (e) {
             dispatch(changeTheme('dark'));
             localStorage.setItem('app_theme', 'dark');
-            window.less
-                .modifyVars({
-                    ...theme_two,
-                })
-                .then(() => {
-                    console.log('success');
-                })
-                .catch(() => {
-                    console.log('fail');
-                });
         } else {
             dispatch(changeTheme('white'));
             localStorage.setItem('app_theme', 'white');
-            window.less
-                .modifyVars({
-                    ...theme_one,
-                })
-                .then(() => {
-                    console.log('success');
-                })
-                .catch(() => {
-                    console.log('fail');
-                });
         }
     };
 
     const logout = () => {
-        localStorage.setItem("auth_token","")
+        localStorage.setItem("auth_token", "")
+        dispatch(changeTheme('white'));
         navigate("/sign-in")
-        window.less
-                .modifyVars({
-                    ...theme_one,
-                })
-                .then(() => {
-                    console.log('success');
-                })
-                .catch(() => {
-                    console.log('fail');
-                });
     }
 
     const menu = (
         <UserOptionsMenu themestate={themeState}>
             <UserDropDown key="profile">
-                <Link to="/profile">Profile</Link>
+                <Link to={`/profile/${user.id}`}>Profile</Link>
             </UserDropDown>
             <UserDropDown key="theme">
                 <ThemeText>Dark Theme</ThemeText>

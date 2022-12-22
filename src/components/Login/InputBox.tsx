@@ -16,7 +16,7 @@ const InputBox: FC<IProps> = (props) => {
 
     return <LoginInput onChange={(e) => props.handleChange(e, props.type)} value={props?.formData ? props?.formData[props.type] : null} placeholder={props.placeholder} type={props.type} suffix={
         <LoginOutlined onClick={props.submitFunction} style={{
-            color: 'black',
+            color: '#49548D',
             fontWeight: 'bold',
             visibility: props.callFunc && props?.formData && props?.formData[props.type] ? "visible" : "hidden"
         }} />

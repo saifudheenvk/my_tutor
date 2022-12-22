@@ -54,10 +54,11 @@ const NavOptions = styled(Col)`
 
 const LanguageSelectContainer = styled.div`
   margin-right: 20px;
-  margin-left: 10px;
+  margin-bottom: 20px;
 `;
 const UserIcon = styled(Col)`
   cursor: pointer;
+  margin-top:20px;
 `;
 
 interface IProps {

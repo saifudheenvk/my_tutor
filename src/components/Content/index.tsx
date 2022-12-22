@@ -6,12 +6,9 @@ import { getMyDetails } from "../../actions/users/userDetails";
 import { setUserDetails } from "../../redux/actions/auth";
 import { changeTheme } from "../../redux/actions/theme";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import theme_one from "../../theme_one";
-import theme_two from "../../theme_two";
 import Header from "../Header";
 import RouteMap from "./RouteMap";
 
-declare const window: any;
 
 const { Content: AntdContent } = Layout;
 
@@ -42,6 +39,8 @@ const Container = styled(AntdContent)`
   @media (max-width: 768px) {
     padding: 0px;
   }
+  background-color: ${props =>
+    props.theme === 'dark' ? '#32343C' : '#E8ECEF'};
 `;
 
 interface IProps {
@@ -57,28 +56,8 @@ const Content: FC<IProps> = (props) => {
   const themeSelector = (themeState: string) => {
     if (themeState !== 'white') {
       dispatch(changeTheme('dark'));
-      window.less
-        .modifyVars({
-          ...theme_two,
-        })
-        .then(() => {
-          console.log('success');
-        })
-        .catch(() => {
-          console.log('fail');
-        });
     } else {
       dispatch(changeTheme('white'));
-      window.less
-        .modifyVars({
-          ...theme_one,
-        })
-        .then(() => {
-          console.log('success');
-        })
-        .catch(() => {
-          console.log('fail');
-        });
     }
   };
 
@@ -110,7 +89,7 @@ const Content: FC<IProps> = (props) => {
   return (
     <ContainerLayout theme={themeRedux} >
       <Header />
-      <Container>
+      <Container theme={themeRedux}>
         <Suspense fallback="loading" >
           <RouteMap />
         </Suspense>

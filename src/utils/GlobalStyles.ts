@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
-interface IGlobalStyles{
-	themeState:string;
-	theme:any
+interface IGlobalStyles {
+	themeState: string;
+	theme: any
 }
 
 const GlobalStyles = createGlobalStyle`
@@ -12,23 +12,22 @@ const GlobalStyles = createGlobalStyle`
 	}
 	body {
 		margin: 0;
-        font-family: ${(props:IGlobalStyles) => props.theme.fonts.main};
+        font-family: ${(props: IGlobalStyles) => props.theme.fonts.main};
+		color: ${(props: IGlobalStyles) =>
+		props.themeState === 'dark' ? '#ffffff80' : '#848C94'} !important;
 	}
+
 	.ant-layout{
 		// background: #f2f8f9 !important;
     }
-	// .ant-layout-sider-trigger{
-	// 	background:#f3f3f3!important;
-	// 	color:#002140 !important;
-	// }
 	.ant-layout {
-    background:${(props:IGlobalStyles) =>
-      props.themeState === 'dark' ? 'rgb(50, 52, 60)' : '#F3F3F4'} !important;
+    background:${(props: IGlobalStyles) =>
+		props.themeState === 'dark' ? 'rgb(50, 52, 60)' : '#F3F3F4'} !important;
 ;
 }
 ${props =>
-  props.themeState !== 'dark' &&
-  `.ant-btn-default{
+		props.themeState !== 'dark' &&
+		`.ant-btn-default{
 	background:#E8ECEF !important;
 	border: 1px solid #C7CBCE !important;
 }
@@ -90,7 +89,7 @@ background: #b9bec154 !important;
 	  
 	  .ant-card {
 		background: ${props =>
-      props.themeState === 'dark' ? '#3B3E48' : '#fff'} !important;
+		props.themeState === 'dark' ? '#3B3E48' : '#fff'} !important;
 	  }
 
 	  .ant-popover {
@@ -129,7 +128,7 @@ background: #b9bec154 !important;
 
 	.ant-table-tbody > tr:hover:not(.ant-table-expanded-row):not(.ant-table-row-selected) > td {
 		background: ${props =>
-      props.themeState === 'dark' ? '#32343C' : '#E8ECEF'} !important;
+		props.themeState === 'dark' ? '#32343C' : '#E8ECEF'} !important;
 		cursor: pointer;
 	}
 
@@ -161,19 +160,19 @@ background: #b9bec154 !important;
 }
 * {
   scrollbar-color:${props =>
-    props.themeState === 'dark' ? '#5b5d62 #3b3e48' : '#fff #e1e6ed'};
+		props.themeState === 'dark' ? '#5b5d62 #3b3e48' : '#fff #e1e6ed'};
   scrollbar-width: thin;
 }
   ::-webkit-scrollbar {
     background-color: ${props =>
-      props.themeState === 'dark' ? '#2f323b' : '#ffffff'};
+		props.themeState === 'dark' ? '#2f323b' : '#ffffff'};
 		width: 6px;
 		height:4px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
 ::-webkit-scrollbar-thumb {
     background-color: ${props =>
-      props.themeState === 'dark' ? '#3b3e48' : '#ffffff'};
+		props.themeState === 'dark' ? '#3b3e48' : '#ffffff'};
     -webkit-border-radius: 1ex;
   }
 
@@ -185,7 +184,7 @@ background: #b9bec154 !important;
 }
 .ant-modal-close:hover {
     color: ${props =>
-      props.themeState === 'dark' ? '#FFC107' : '#49548D'} !important;
+		props.themeState === 'dark' ? '#FFC107' : '#49548D'} !important;
 }
 .ant-tabs-tab {
 	border:none !important;
@@ -193,11 +192,11 @@ background: #b9bec154 !important;
   }
   .ant-tabs.ant-tabs-card .ant-tabs-card-bar .ant-tabs-tab-active {
 	color: ${props =>
-    props.themeState === 'dark' ? '#FFC107' : '#49548D'} !important;
+		props.themeState === 'dark' ? '#FFC107' : '#49548D'} !important;
 	background:none !important;
 	border:none !important;
 	border-bottom: 2px solid ${props =>
-    props.themeState === 'dark' ? '#FFC107' : '#49548D'} !important;
+		props.themeState === 'dark' ? '#FFC107' : '#49548D'} !important;
   }
 
   .ant-input::placeholder {
